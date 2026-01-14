@@ -21,8 +21,9 @@ copyPackage() {
         "lib.typ"
         "thumbnail.png"
         "template/"
-        "classes/"
+        "components/"
         "core/"
+        "layout/"
     )
 
     for item in "${REQUIRED_FILES[@]}"; do
