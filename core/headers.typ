@@ -13,9 +13,9 @@
   let heading-display = numbering(heading.numbering, ..heading-number)
   if heading-on-current-page {
     let res-heading = headings.first()
-    [ #(tr().chapter)(heading-display)]
+    text(font: "Cormorant SC", weight: "bold")[ #(tr().chapter)(heading-display)]
   } else {
-    [ #(tr().chapter)(heading-display) -- #nearest-previous-heading.body]
+    text(font: "Cormorant SC", weight: "bold")[ #(tr().chapter)(heading-display) -- #nearest-previous-heading.body]
   }
 })
 

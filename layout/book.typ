@@ -2,6 +2,7 @@
 #import "../components/toc.typ": table-of-content
 #import "common.typ": copyright-page-settings
 #import "setup.typ": setup
+#import "title_page.typ": title-page
 
 #let book = (
   title: none,
@@ -28,6 +29,8 @@
     height: height,
     language: language,
   )
+
+  title-page()
 
   table-of-content(..toc)
 

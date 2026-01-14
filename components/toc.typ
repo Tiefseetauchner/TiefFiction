@@ -11,6 +11,10 @@
 
   let page-num = page-nums.last()
 
+  if location.page-numbering() == none {
+    return
+  }
+
   numbering(location.page-numbering(), counter(page).at(page-num.location()).last())
 }
 
