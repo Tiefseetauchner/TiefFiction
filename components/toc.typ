@@ -19,8 +19,6 @@
 }
 
 #let table-of-content = (style: "num-first", show-chapter-nums: false) => {
-  pagebreak(weak: true)
-
   context {
     text(size: 1.4em)[#tr().table-of-content]
 

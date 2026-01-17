@@ -1,4 +1,5 @@
 #import "@preview/tieflang:0.1.0": configure-translations
+#import "isbn.typ": render-isbn
 
 #let languages = (
   english-us: "en-us",
@@ -6,22 +7,117 @@
   deutsch-de: "de-de",
 )
 
+#let ordinal-en = number => {
+  let mod10 = calc.rem(number, 10)
+  let mod100 = calc.rem(number, 100)
+  let suffix = if mod100 == 11 or mod100 == 12 or mod100 == 13 {
+    "th"
+  } else if mod10 == 1 {
+    "st"
+  } else if mod10 == 2 {
+    "nd"
+  } else if mod10 == 3 {
+    "rd"
+  } else {
+    "th"
+  }
+  [#number#suffix]
+}
+
+#let ordinal-de = number => [#number.]
+
+#let copyright-line = (holder, year) => {
+  if holder != none and year != none {
+    [Copyright (c) #year #holder]
+  } else if holder != none {
+    [Copyright (c) #holder]
+  } else if year != none {
+    [Copyright (c) #year]
+  } else {
+    none
+  }
+}
+
 #let i18n-en-us = (
-  copyright-page: (),
+  copyright-page: (holder, publisher, year, isbn, edition, extra) => (
+    copyright-line(holder, year),
+    if edition != none {
+      [#ordinal-en(edition) edition]
+    },
+    if publisher != none and year != none {
+      [Published #year, by #publisher.]
+    } else if publisher != none {
+      [Published by #publisher.]
+    } else if year != none {
+      [Published #year.]
+    } else {
+      none
+    },
+    [All rights reserved.],
+    ..extra,
+    if isbn != none {
+      [ISBN: #isbn\
+        #render-isbn(isbn)]
+    },
+  ),
   chapter: chapter-number => [Chapter #chapter-number],
   table-of-content: [Table of Content],
+  ordinal: ordinal-en,
 )
 
 #let i18n-en-uk = (
-  copyright-page: (),
+  copyright-page: (holder, publisher, year, isbn, edition, extra) => (
+    copyright-line(holder, year),
+    [The moral right of the author has been asserted.],
+    if edition != none {
+      [#ordinal-en(edition) edition]
+    },
+    if publisher != none and year != none {
+      [Published #year, by #publisher.]
+    } else if publisher != none {
+      [Published by #publisher.]
+    } else if year != none {
+      [Published #year.]
+    } else {
+      none
+    },
+    [All rights reserved.],
+    ..extra,
+    if isbn != none {
+      [ISBN: #isbn\
+        #render-isbn(isbn)]
+    },
+  ),
   chapter: chapter-number => [Chapter #chapter-number],
   table-of-content: [Table of Content],
+  ordinal: ordinal-en,
 )
 
 #let i18n-de-de = (
-  copyright-page: (),
+  copyright-page: (holder, publisher, year, isbn, edition, extra) => (
+    copyright-line(holder, year),
+    if edition != none {
+      [#ordinal-de(edition) Auflage]
+    },
+    if publisher != none and year != none {
+      [Herausgegeben von #publisher im Jahr #year.]
+    } else if publisher != none {
+      [Herausgegeben von #publisher.]
+    } else if year != none {
+      [Herausgegeben im Jahr #year.]
+    } else {
+      none
+    },
+    [Alle Rechte vorbehalten.],
+    ..extra,
+    if isbn != none {
+      [ISBN: #isbn\
+        #render-isbn(isbn)]
+    },
+  ),
   chapter: chapter-number => [Kapitel #chapter-number],
   table-of-content: [Inhaltsverzeichnis],
+  ordinal: ordinal-de,
 )
 
 #let setup-i18n = () => configure-translations(

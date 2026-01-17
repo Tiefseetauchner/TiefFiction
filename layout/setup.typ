@@ -10,6 +10,9 @@
   author: none,
   publisher: none,
   date: none,
+  isbn: none,
+  edition: none,
+  blurb: none,
   paper: auto,
   margin: none,
   width: none,
@@ -40,6 +43,9 @@
     author: author,
     publisher: publisher,
     date: date-or-today,
+    isbn: isbn,
+    edition: edition,
+    blurb: blurb,
   ))
 
   let resulting-margin = if margin != none {
@@ -49,7 +55,6 @@
   }
 
   set par(first-line-indent: 1.5em, justify: true)
-  set heading(numbering: "1")
 
   show heading.where(level: 1): it => {
     pagebreak(weak: true)
