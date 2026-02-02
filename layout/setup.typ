@@ -56,11 +56,17 @@
 
   set par(first-line-indent: 1.5em, justify: true)
 
+  set text(font: "Cormorant", weight: "medium")
+
+  show heading: set text(font: "Cormorant SC", weight: "bold")
   show heading.where(level: 1): it => {
     pagebreak(weak: true)
 
-    text(font: "Cormorant SC", weight: "bold", align(center, it.body))
+    align(center, it.body)
   }
+
+  show quote: set text(font: "Liberation Mono", size: 8pt)
+  show quote: set par(first-line-indent: 0pt)
 
   set page(
     header: no-header(),

@@ -46,7 +46,7 @@
   }
 
   if copyright-block != none {
-    pagebreak(to: "odd", weak: true)
+    pagebreak(to: "even", weak: true)
     copyright-block(..copyright-block-settings)
     pagebreak(to: "even", weak: true)
   }

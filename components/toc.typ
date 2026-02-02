@@ -60,7 +60,7 @@
         let location = h.location()
         if show-chapter-nums {
           (
-            numbering(heading.numbering, counter(heading).at(location).last()),
+            if heading.numbering != none { numbering(heading.numbering, counter(heading).at(location).last()) },
             link(h.location())[#h.body],
             line(length: 100%, stroke: spacer-stroke),
             get-page-num(location),
