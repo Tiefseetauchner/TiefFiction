@@ -45,6 +45,7 @@
   date: none,
   isbn: none,
   edition: none,
+  dedication: none,
   extra-lines: (),
   settings: (:),
 ) => context {
@@ -55,8 +56,13 @@
   let year-value = resolve-year(year, date-value)
   let isbn-value = if isbn == none { meta.at("isbn", default: none) } else { isbn }
   let edition-value = if edition == none { meta.at("edition", default: none) } else { edition }
+  let dedication-value = if dedication == none { meta.at("dedication", default: none) } else { dedication }
   let extra = ensure-array(extra-lines)
   let merged-settings = (:..copyright-block-settings, ..settings)
+
+  if dedication-value != none {
+    place(top + left, dx: 20pt)[#dedication-value]
+  }
 
   let lines = (tr().copyright-page)(
     holder-value,

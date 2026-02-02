@@ -13,6 +13,7 @@
   isbn: none,
   edition: none,
   blurb: none,
+  dedication: none,
   paper: auto,
   margin: none,
   width: none,
@@ -46,6 +47,7 @@
     isbn: isbn,
     edition: edition,
     blurb: blurb,
+    dedication: dedication,
   ))
 
   let resulting-margin = if margin != none {
