@@ -1,4 +1,4 @@
-#import "@preview/tieffiction:0.1.0": book, start-before-main, start-main
+#import "../lib.typ": book, start-before-main, start-main
 
 #show: book.with(
   title: "The Wonderful House",
@@ -26,3 +26,5 @@ This is displayed differently and doesn't count to the chapter count!
 = The Door That Stayed Shut
 
 The latch was warm. Mara counted to three, pressed, and the hallway breathed.
+
+#lorem(400)
