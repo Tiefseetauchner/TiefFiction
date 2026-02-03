@@ -1,5 +1,6 @@
 #import "../core/state.typ": metadata-state
 #import "@preview/tieflang:0.1.0": tr
+#import "@preview/ccicons:1.0.1": cc-is-valid
 
 #let copyright-block-settings = (
   text-size: 8.5pt,
@@ -46,6 +47,7 @@
   isbn: none,
   edition: none,
   dedication: none,
+  license: none,
   extra-lines: (),
   settings: (:),
 ) => context {
@@ -57,6 +59,7 @@
   let isbn-value = if isbn == none { meta.at("isbn", default: none) } else { isbn }
   let edition-value = if edition == none { meta.at("edition", default: none) } else { edition }
   let dedication-value = if dedication == none { meta.at("dedication", default: none) } else { dedication }
+  let license-value = if license == none { meta.at("license", default: none) } else { license }
   let extra = ensure-array(extra-lines)
   let merged-settings = (:..copyright-block-settings, ..settings)
 
@@ -70,6 +73,7 @@
     year-value,
     isbn-value,
     edition-value,
+    license-value,
     extra,
   )
 

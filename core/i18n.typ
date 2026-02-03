@@ -1,5 +1,6 @@
 #import "@preview/tieflang:0.1.0": configure-translations
 #import "isbn.typ": render-isbn
+#import "@preview/ccicons:1.0.1": cc-url, ccicon
 
 #let languages = (
   english-us: "en-us",
@@ -39,7 +40,7 @@
 }
 
 #let i18n-en-us = (
-  copyright-page: (holder, publisher, year, isbn, edition, extra) => (
+  copyright-page: (holder, publisher, year, isbn, edition, license, extra) => (
     copyright-line(holder, year),
     if edition != none {
       [#ordinal-en(edition) edition]
@@ -55,6 +56,14 @@
     },
     [All rights reserved.],
     ..extra,
+    ..if license != none {
+      (
+        v(20pt),
+        [This work is licensed under a #link(cc-url(license + "/de/4.0"), [Creative Commons '#license' license]).\
+          #ccicon(license + "-badge", scale: 3)],
+        v(20pt),
+      )
+    },
     if isbn != none {
       [ISBN: #isbn\
         #render-isbn(isbn)]
@@ -66,7 +75,7 @@
 )
 
 #let i18n-en-uk = (
-  copyright-page: (holder, publisher, year, isbn, edition, extra) => (
+  copyright-page: (holder, publisher, year, isbn, edition, license, extra) => (
     copyright-line(holder, year),
     [The moral right of the author has been asserted.],
     if edition != none {
@@ -83,6 +92,14 @@
     },
     [All rights reserved.],
     ..extra,
+    ..if license != none {
+      (
+        v(20pt),
+        [This work is licensed under a #link(cc-url(license + "/de/4.0"), [Creative Commons '#license' license]).\
+          #ccicon(license + "-badge", scale: 3)],
+        v(20pt),
+      )
+    },
     if isbn != none {
       [ISBN: #isbn\
         #render-isbn(isbn)]
@@ -94,7 +111,7 @@
 )
 
 #let i18n-de-de = (
-  copyright-page: (holder, publisher, year, isbn, edition, extra) => (
+  copyright-page: (holder, publisher, year, isbn, edition, license, extra) => (
     copyright-line(holder, year),
     if edition != none {
       [#ordinal-de(edition) Auflage]
@@ -110,6 +127,14 @@
     },
     [Alle Rechte vorbehalten.],
     ..extra,
+    ..if license != none {
+      (
+        v(20pt),
+        [Dieses Werk wird unter einer #link(cc-url(license + "/de/4.0"), [Creative Commons '#license' Lizenz]) zur Verfügung gestellt.\
+          #ccicon(license + "-badge", scale: 3)],
+        v(20pt),
+      )
+    },
     if isbn != none {
       [ISBN: #isbn\
         #render-isbn(isbn)]

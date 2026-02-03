@@ -1,9 +1,10 @@
 #import "../core/state.typ": metadata-state
-#import "../core/i18n.typ": setup-i18n
+#import "../core/i18n.typ": languages, setup-i18n
 #import "../core/headers.typ": no-header
 #import "../core/footers.typ": no-footer
 #import "common.typ": default-margin
 #import "@preview/tieflang:0.1.0": pop-lang, push-lang, tr
+#import "@preview/ccicons:1.0.1": cc-is-valid
 
 #let setup = (
   title: none,
@@ -14,6 +15,7 @@
   edition: none,
   blurb: none,
   dedication: none,
+  license: none,
   paper: auto,
   margin: none,
   width: none,
@@ -21,6 +23,21 @@
   language: none,
   body,
 ) => {
+  if license != none {
+    assert(cc-is-valid(license), message: "If license is provided, it must be a valid CC license.")
+  }
+
+  if language != none {
+    assert(
+      languages.values().contains(language),
+      message: "If language is provided, it must be contained in the available languages.",
+    )
+  }
+
+  if date != none {
+    assert(type(date) == datetime, message: "If date is provided, it must be of type datetime.")
+  }
+
   setup-i18n()
   if language != none {
     push-lang(language)
@@ -48,6 +65,7 @@
     edition: edition,
     blurb: blurb,
     dedication: dedication,
+    license: license,
   ))
 
   let resulting-margin = if margin != none {
