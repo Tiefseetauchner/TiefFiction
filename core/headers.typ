@@ -1,12 +1,11 @@
 #import "@preview/tieflang:0.1.0": tr
-#import "state.typ": metadata-state
+#import "state.typ": meta-value
 
 #let header-font = "Cormorant SC"
 #let header-text = (weight, body) => text(font: header-font, weight: weight)[#body]
 #let header-divider = place(dy: -.2em, line(angle: 90deg, length: 1em, stroke: (thickness: .4pt, paint: luma(30%))))
 #let is-even-page = page => calc.rem(page, 2) == 0
 #let page-left-right-choose = (page, left, right) => if is-even-page(page) { left } else { right }
-#let meta-value = key => metadata-state.final().at(key, default: none)
 
 #let chapter-context = () => {
   let headings = query(heading.where(level: 1))

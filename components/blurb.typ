@@ -1,9 +1,8 @@
-#import "../core/state.typ": metadata-state
+#import "../core/state.typ": meta-value, val-or-meta
 
 #let blurb-block = (blurb: none, title: none) => context {
-  let meta = metadata-state.final()
-  let blurb-value = if blurb == none { meta.at("blurb", default: none) } else { blurb }
-  let title-value = if title == none { meta.at("title", default: none) } else { title }
+  let blurb-value = val-or-meta(blurb, "blurb")
+  let title-value = val-or-meta(title, "title")
 
   [
     #text(size: 32pt)[#title-value]

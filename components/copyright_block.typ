@@ -1,4 +1,4 @@
-#import "../core/state.typ": metadata-state
+#import "../core/state.typ": meta-value, val-or-meta
 #import "@preview/tieflang:0.1.0": tr
 #import "@preview/ccicons:1.0.1": cc-is-valid
 
@@ -51,15 +51,14 @@
   extra-lines: (),
   settings: (:),
 ) => context {
-  let meta = metadata-state.final()
-  let holder-value = format-list(if holder == none { meta.at("author", default: none) } else { holder })
-  let publisher-value = format-list(if publisher == none { meta.at("publisher", default: none) } else { publisher })
-  let date-value = if date == none { meta.at("date", default: none) } else { date }
+  let holder-value = format-list(val-or-meta(holder, "author"))
+  let publisher-value = format-list(val-or-meta(publisher, "publisher"))
+  let date-value = val-or-meta(date, "date")
   let year-value = resolve-year(year, date-value)
-  let isbn-value = if isbn == none { meta.at("isbn", default: none) } else { isbn }
-  let edition-value = if edition == none { meta.at("edition", default: none) } else { edition }
-  let dedication-value = if dedication == none { meta.at("dedication", default: none) } else { dedication }
-  let license-value = if license == none { meta.at("license", default: none) } else { license }
+  let isbn-value = val-or-meta(isbn, "isbn")
+  let edition-value = val-or-meta(edition, "edition")
+  let dedication-value = val-or-meta(dedication, "dedication")
+  let license-value = val-or-meta(license, "license")
   let extra = ensure-array(extra-lines)
   let merged-settings = (:..copyright-block-settings, ..settings)
 
