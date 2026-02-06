@@ -98,7 +98,7 @@
         if show-chapter-nums {
           (
             get-page-num(location),
-            [#numbering(heading.numbering, counter(heading).at(location).last()):],
+            if heading.numbering != none { numbering(heading.numbering, counter(heading).at(location).last()) },
             link(h.location())[#h.body],
           )
         } else {
@@ -116,7 +116,7 @@
         ..heading-pairs.flatten()
       )
     } else {
-      assert(false, "Style must be in (\"num-first\", \"underlined\").")
+      assert(false, "Style must be in (\"num-first\", \"underlined\", \"dotted\").")
     }
   }
 

@@ -1,6 +1,5 @@
 #import "../core/state.typ": meta-value, val-or-meta
 #import "@preview/tieflang:0.1.0": tr
-#import "@preview/ccicons:1.0.1": cc-is-valid
 
 #let copyright-block-settings = (
   text-size: 8.5pt,

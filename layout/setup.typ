@@ -1,7 +1,5 @@
 #import "../core/state.typ": metadata-state
 #import "../core/i18n.typ": languages, setup-i18n
-#import "../core/headers.typ": no-header
-#import "../core/footers.typ": no-footer
 #import "common.typ": default-margin
 #import "helpers.typ": header-footer-formats, set-header-footer
 #import "@preview/tieflang:0.1.0": pop-lang, push-lang, tr
