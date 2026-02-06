@@ -95,7 +95,7 @@
     ..if license != none {
       (
         v(20pt),
-        [This work is licensed under a #link(cc-url(license + "/de/4.0"), [Creative Commons '#license' license]).\
+        [This work is licensed under a #link(cc-url(license), [Creative Commons '#license' license]).\
           #ccicon(license + "-badge", scale: 3)],
         v(20pt),
       )
