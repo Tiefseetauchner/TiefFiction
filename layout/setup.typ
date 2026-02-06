@@ -3,11 +3,13 @@
 #import "../core/headers.typ": no-header
 #import "../core/footers.typ": no-footer
 #import "common.typ": default-margin
+#import "helpers.typ": header-footer-formats, set-header-footer
 #import "@preview/tieflang:0.1.0": pop-lang, push-lang, tr
 #import "@preview/ccicons:1.0.1": cc-is-valid
 
 #let setup = (
   title: none,
+  subtitle: none,
   author: none,
   publisher: none,
   date: none,
@@ -21,6 +23,7 @@
   width: none,
   height: none,
   language: none,
+  header-footer: none,
   body,
 ) => {
   if license != none {
@@ -58,6 +61,7 @@
 
   metadata-state.update((
     title: title,
+    subtitle: subtitle,
     author: author,
     publisher: publisher,
     date: date-or-today,
@@ -88,10 +92,11 @@
   show quote: set text(font: "Liberation Mono", size: 8pt)
   show quote: set par(first-line-indent: 0pt)
 
-  set page(
-    header: no-header(),
-    footer: no-footer(),
-  )
+  if header-footer == none {
+    set-header-footer(header-footer-formats.chapter-number-center)
+  } else {
+    set-header-footer(header-footer)
+  }
 
   if width == none and height == none {
     let resulting-paper = if paper == auto { "a5" } else { paper }

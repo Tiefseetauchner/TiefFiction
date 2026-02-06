@@ -8,6 +8,7 @@
 
 #let book = (
   title: none,
+  subtitle: none,
   author: none,
   publisher: none,
   date: none,
@@ -24,10 +25,12 @@
   show-title-page: true,
   toc-settings: (:),
   copyright-block-settings: (:),
+  header-footer: none,
   body,
 ) => {
   show: setup.with(
     title: title,
+    subtitle: subtitle,
     author: author,
     publisher: publisher,
     date: date,
@@ -41,6 +44,7 @@
     width: width,
     height: height,
     language: language,
+    header-footer: header-footer,
   )
 
   show: start-preamble

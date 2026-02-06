@@ -1,5 +1,8 @@
+-.
+02l
 #import "@preview/tieffiction:0.1.0": book, start-before-main, start-main
 
+=pl0}'
 #show: book.with(
   title: "The Wonderful House",
   author: ("Jochen Garak", "Lena Tauchner"),
