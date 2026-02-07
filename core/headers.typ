@@ -32,7 +32,7 @@
   header-text("bold")[ #(chapter-title(info.display)) -- #info.nearest.body]
 }
 
-#let chapter-number-center-header = () => align(center, context {
+#let chapter-number-center-header = align(center, context {
   let info = chapter-context()
   if info == none {
     return
@@ -40,7 +40,7 @@
   chapter-title-with-body(info)
 })
 
-#let chapter-number-outside-header = () => context {
+#let chapter-number-outside-header = context {
   let info = chapter-context()
   if info == none {
     return
@@ -50,7 +50,32 @@
   align(heading-alignment, chapter-title-with-body(info))
 }
 
-#let book-author-title-header = () => context {
+#let chapter-number-outside-pagenum-header = context {
+  let info = chapter-context()
+  if info == none {
+    return
+  }
+  let pagenum = counter(page).display()
+  let current-page = here().page()
+  let heading-alignment = page-left-right-choose(current-page, left, right)
+  align(heading-alignment, page-left-right-choose(
+    current-page,
+    header-text("bold", grid(
+      align: (center, center, center),
+      columns: 3,
+      column-gutter: .4em,
+      pagenum, header-divider, chapter-title-with-body(info),
+    )),
+    header-text("bold", grid(
+      align: (center, center, center),
+      columns: 3,
+      column-gutter: .4em,
+      chapter-title-with-body(info), header-divider, pagenum,
+    )),
+  ))
+}
+
+#let book-author-title-header = context {
   let current-page = here().page()
   let title-value = meta-value("title")
   let author-value = meta-value("author")
@@ -64,7 +89,7 @@
   )
 }
 
-#let book-title-subtitle-header = () => context {
+#let book-title-subtitle-header = context {
   let current-page = here().page()
   let title-value = meta-value("title")
   let subtitle-value = meta-value("subtitle")
@@ -78,7 +103,7 @@
   )
 }
 
-#let book-author-title-pagenum-header = () => context {
+#let book-author-title-pagenum-header = context {
   let current-page = here().page()
   let pagenum = counter(page).display()
   let title-value = meta-value("title")
@@ -103,7 +128,7 @@
   )
 }
 
-#let book-title-subtitle-pagenum-header = () => context {
+#let book-title-subtitle-pagenum-header = context {
   let current-page = here().page()
   let title-value = meta-value("title")
   let subtitle-value = meta-value("subtitle")
@@ -128,4 +153,4 @@
   )
 }
 
-#let no-header = () => none
+#let no-header = none

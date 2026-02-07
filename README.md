@@ -38,7 +38,7 @@ As TiefFiction uses TiefLang (obviously), selecting a language can either be don
 
 ## Components
 
-TiefFiction currently has 5 main components:
+TiefFiction currently has 4 main components:
 
 1. The Title Page `title-page`
 2. The Copyright Block `copyright-block`
@@ -57,6 +57,26 @@ A TiefFiction book is split into four parts:
 - The [after-main](#start-after-main) disables everything again.
 
 Use at your discretion.
+
+## Headers and Footers
+
+TiefFiction supports multiple header/footer formats. You may customize them to your liking based on the exported `headers` and `footers` namespaces using the `header-footer` parameter of `setup`/`book`, or by using the `set-header-footer` function.
+
+Both the argument and the function take the following form of argument:
+
+- String of header/footer combination name
+- Dictionary with header and footer
+
+The string may contain any of the following values
+
+- `chapter-number-center`
+- `chapter-number-outside`
+- `author-title-header-pagenum-footer`
+- `title-subtitle-header-pagenum-footer`
+- `author-title-pagenum-header`
+- `title-subtitle-pagenum-header`
+
+The dictionary method either accepts a preset dictionary with the above values from `tieffiction.header-footer-formats` or a custom dictionary with a `header` and a `footer` value. To disable a header/footer, pass `none`.
 
 ## Reference
 
@@ -78,6 +98,7 @@ Use at your discretion.
   width: none, // Page width override
   height: none, // Page height override
   language: languages.english-us, // TiefLang language key
+  header-footer: header-footer-values.chapter-number-outside, // Sets the corresponding header and footer for main matter
 )
 ```
 
@@ -102,6 +123,7 @@ Use at your discretion.
   show-title-page: true, // Show the title page before front matter
   toc-settings: (style: "num-first", show-chapter-nums: false), // ToC style options
   copyright-block-settings: (settings: (text-size: 8.5pt)), // Copyright block options
+  header-footer: header-footer-values.chapter-number-outside, // Sets the corresponding header and footer for main matter
 )
 ```
 

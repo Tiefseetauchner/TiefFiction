@@ -22,6 +22,12 @@
 
 #lorem(400)
 
+#set-header-footer("chapter-number-outside-pagenum-header")
+
+= chapter-number-outside-pagenum-header
+
+#lorem(400)
+
 #set-header-footer("author-title-header-pagenum-footer")
 
 = author-title-header-pagenum-footer

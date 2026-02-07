@@ -1,13 +1,15 @@
 #import "../core/footers.typ": no-footer, page-number-footer
 #import "../core/headers.typ": (
   book-author-title-header, book-author-title-pagenum-header, book-title-subtitle-header,
-  book-title-subtitle-pagenum-header, chapter-number-center-header, chapter-number-outside-header, no-header,
+  book-title-subtitle-pagenum-header, chapter-number-center-header, chapter-number-outside-header,
+  chapter-number-outside-pagenum-header, no-header,
 )
 #import "../core/state.typ": main-header-footer-state
 
 #let header-footer-formats = (
   chapter-number-center: (header: chapter-number-center-header, footer: page-number-footer),
   chapter-number-outside: (header: chapter-number-outside-header, footer: page-number-footer),
+  chapter-number-outside-pagenum-header: (header: chapter-number-outside-pagenum-header, footer: no-footer),
   author-title-header-pagenum-footer: (header: book-author-title-header, footer: page-number-footer),
   title-subtitle-header-pagenum-footer: (header: book-title-subtitle-header, footer: page-number-footer),
   author-title-pagenum-header: (header: book-author-title-pagenum-header, footer: no-footer),
@@ -37,7 +39,7 @@
   set page(numbering: none)
   counter(heading).update(0)
   counter(page).update(1)
-  set page(header: no-header(), footer: no-footer())
+  set page(header: no-header, footer: no-footer)
 
   body
 }
@@ -48,7 +50,7 @@
   set heading(numbering: "A")
   set page(numbering: "I")
   counter(page).update(1)
-  set page(footer: page-number-footer())
+  set page(footer: page-number-footer)
 
   body
 }
@@ -62,8 +64,8 @@
 
 
   set page(
-    header: context (main-header-footer-state.get().header)(),
-    footer: context (main-header-footer-state.get().footer)(),
+    header: context main-header-footer-state.get().header,
+    footer: context main-header-footer-state.get().footer,
   )
   body
 }
@@ -74,7 +76,7 @@
   set page(numbering: none)
   counter(heading).update(0)
   counter(page).update(1)
-  set page(header: no-header(), footer: no-footer())
+  set page(header: no-header, footer: no-footer)
 
   body
 }
