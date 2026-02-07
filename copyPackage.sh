@@ -19,6 +19,8 @@ copyPackage() {
         "README.md"
         "LICENSE"
         "lib.typ"
+        "header-lib.typ"
+        "footer-lib.typ"
         "thumbnail.png"
         "template/"
         "components/"
