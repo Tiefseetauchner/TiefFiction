@@ -1,6 +1,6 @@
 [package]
 name = "tieffiction"
-version = "0.2.0"
+version = "0.2.1"
 compiler = "0.13.1"
 authors = ["Lena Tauchner"]
 entrypoint = "lib.typ"
@@ -9,6 +9,7 @@ description = "A simple book template for fiction."
 keywords = []
 categories = ["layout", "fun", "book"]
 disciplines = []
+homepage = "https://www.lukechriswalker.at/projects/6a26a275b6efd610e8e3928b"
 
 [template]
 path = "template"
