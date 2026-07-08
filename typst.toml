@@ -9,6 +9,7 @@ description = "A simple book template for fiction."
 keywords = []
 categories = ["layout", "fun", "book"]
 disciplines = []
+repository = "https://github.com/Tiefseetauchner/TiefFiction"
 homepage = "https://www.lukechriswalker.at/projects/6a26a275b6efd610e8e3928b"
 
 [template]
