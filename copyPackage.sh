@@ -38,6 +38,10 @@ copyPackage() {
 
     if [ -f "$DEST_DIR/README.md" ]; then
         sed -i '/!\[.*\](.*)/d' "$DEST_DIR/README.md"
+
+        CURRENT_COMMIT_HASH=$(git rev-parse HEAD)
+        NEW_REPO_BLOBS_URL="https://github.com/Tiefseetauchner/TiefFiction/blob/$CURRENT_COMMIT_HASH/"
+        sed -i -E "s|\[([^]]+)\]\(([^()#:][^():]*)\)|[\1]($NEW_REPO_BLOBS_URL\2)|g" "$DEST_DIR/README.md"
     fi
     
     echo "Files copied to $DEST_DIR"
